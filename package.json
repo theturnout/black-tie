@@ -1,0 +1,19 @@
+{
+  "name": "black-tie",
+  "version": "1.0.0",
+  "description": "Declarative assertion framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "The Turnout LLC <john@turnout.rocks>",
+  "license": "MIT",
+  "dependencies": {
+    "@stekoe/ocl.js": "git+https://github.com/theturnout/ocl.js.git",
+    "upgrade": "^1.1.0"
+  },
+  "devDependencies": {
+    "tsc-node": "0.0.3",
+    "typescript": "^2.7.1"
+  }
+}
