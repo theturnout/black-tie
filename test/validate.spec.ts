@@ -61,7 +61,7 @@ describe("exclusive or", async function () {
         pet.sound = "meow";
 
         const errors = await validator.validate(pet);
-        expect(errors.length).to.equal(1);
+        expect(errors).to.include("catsMeowDogsBark");
     });
 });
 describe("exclusive or", async function () {
