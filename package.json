@@ -4,15 +4,27 @@
   "description": "Declarative assertion framework",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "compile": "tsc -p .",
+    "build": "npm run compile",
+    "debug": "nodemon --delay 2000ms -V --watch ./dist --ignore '*.log' --inspect=0.0.0.0:5858 --nolazy ./dist/index.js",
+    "watch": "tsc -w -p .",
+    "test": "mocha"
   },
   "author": "The Turnout LLC <john@turnout.rocks>",
   "license": "MIT",
   "dependencies": {
     "@stekoe/ocl.js": "git+https://github.com/theturnout/ocl.js.git",
+    "class-validator": "^0.8.5",
+    "reflect-metadata": "^0.1.12",
     "upgrade": "^1.1.0"
   },
   "devDependencies": {
+    "@types/chai": "^4.1.2",
+    "@types/mocha": "^5.0.0",
+    "chai": "^4.1.2",
+    "mocha": "^5.0.5",
+    "source-map-support": "^0.5.4",
+    "ts-node": "^5.0.1",
     "tsc-node": "0.0.3",
     "typescript": "^2.7.1"
   }
