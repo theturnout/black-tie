@@ -36,3 +36,20 @@ const myFavoriteBook: MediaItem = {
 const errors = await validator.validate(myFavoriteBook);
 // no errors will be returned
 ```
+
+## Validating nested objects
+
+If your object contains nested objects and you want the validator to perform their validation too, then you need to
+use the `@ValidateNested()` decorator:
+
+```typescript
+export class Post {
+    @ValidateNested()
+    user: User;
+}
+```
+
+## Roadmap
+
+- Support for preconditions and postconditions.
+- Integration with `class-validator`.
