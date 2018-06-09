@@ -1,5 +1,5 @@
 import { ValidatorOptions, ValidationError } from "class-validator";
-import OclEngine from "@stekoe/ocl.js";
+import { OclEngine } from "@stekoe/ocl.js";
 import "reflect-metadata";
 
 /**
@@ -25,7 +25,7 @@ export class Validator {
         const oclEngine = getOclEngine();
         // get any constraints on the object to be validated
         const oclConstraints = Reflect.getMetadata("oclConstraint", objToValidate) as string[] | undefined;
-        
+
         if (oclConstraints) {
             // add the constraints to the engine to be processed
             oclConstraints.forEach((oclConstraint) => oclEngine.addOclExpression(oclConstraint));
@@ -50,7 +50,7 @@ export class Validator {
         //         "children": []
         //     };
         // });
- 
+
         //validationErrors.push(mappedErrors as any);
     };
 }
