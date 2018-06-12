@@ -81,6 +81,7 @@ describe("exclusive or", async function () {
         stevieNicks.hair.color = "green";
 
         const errors = await validator.validate(stevieNicks);
+        console.log(`my out: ${JSON.stringify(errors)}`);
         expect(errors.length).to.equal(1);
 
     });
