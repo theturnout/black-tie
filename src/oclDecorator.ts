@@ -1,14 +1,20 @@
 import OclEngine from "@stekoe/ocl.js";
 import "reflect-metadata";
-export function ContextFor(oclExpression: string) {
+import { ValidationOptions } from "class-validator";
+import { ValidationMetadataArgs } from "class-validator/metadata/ValidationMetadataArgs";
+export function ContextFor(oclExpression: string, validationOptions?: ValidationOptions) {
     return <T extends { new(...args: any[]): {} }>(originalConstructor: T) => {
-        //function newConstructor(...args: any[]) {
-        //    new originalConstructor(args);
-        //}
-        //   newConstructor.prototype = originalConstructor.prototype;
-        let columns: string[] = Reflect.getMetadata("oclConstraint", originalConstructor.prototype) || [];
-        columns.push(`context ${originalConstructor.name} ${oclExpression}`);
+        let columns: ValidationMetadataArgs[] = Reflect.getMetadata("oclConstraint", originalConstructor.prototype) || [];        
+        const args: ValidationMetadataArgs = {
+            type: "oclInvariant",
+            target: originalConstructor.constructor,
+            propertyName: "whatsthis",
+            constraints: [`context ${originalConstructor.name} ${oclExpression}`],
+            validationOptions: validationOptions
+        };
+        columns.push(args);
         Reflect.defineMetadata("oclConstraint", columns, originalConstructor.prototype);
+        //Reflect.defineMetadata("oclContext", originalConstructor.name, originalConstructor.prototype);
         return originalConstructor;
     };
 }
