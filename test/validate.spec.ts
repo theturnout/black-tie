@@ -1,7 +1,7 @@
+global.window = undefined; // Needed to avoid exception at import..
 import { Validator } from "../src/validate";
 import { expect } from "chai";
 import { ContextFor, ValidateNested } from "../src/oclDecorator";
-
 // -------------------------------------------------------------------------
 // Setup
 // -------------------------------------------------------------------------

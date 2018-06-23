@@ -1,4 +1,3 @@
-import OclEngine from "@stekoe/ocl.js";
 import "reflect-metadata";
 import { ValidationOptions } from "class-validator";
 import { ValidationMetadataArgs } from "class-validator/metadata/ValidationMetadataArgs";

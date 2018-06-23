@@ -1,5 +1,6 @@
+global.window = undefined; // Needed to avoid exception at import..
 import { ValidatorOptions, ValidationError } from "class-validator";
-import { OclEngine } from "@stekoe/ocl.js";
+import  OclEngine from "@stekoe/ocl.js";
 import "reflect-metadata";
 import { ValidationMetadataArgs } from "class-validator/metadata/ValidationMetadataArgs";
 
