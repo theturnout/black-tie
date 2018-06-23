@@ -1,14 +1,24 @@
-import OclEngine from "@stekoe/ocl.js";
 import "reflect-metadata";
-export function ContextFor(oclExpression: string) {
+import { ValidationOptions } from "class-validator";
+import { ValidationMetadataArgs } from "class-validator/metadata/ValidationMetadataArgs";
+/**
+ * Specifies the context for which a constraint (e.g. invariant) applies.
+ * @param oclExpression The OCL constraint constraint, with `context` clause omitted
+ * @param validationOptions The options that modify the behavior of the validator.
+ */
+export function ContextFor(oclExpression: string, validationOptions?: ValidationOptions) {
     return <T extends { new(...args: any[]): {} }>(originalConstructor: T) => {
-        //function newConstructor(...args: any[]) {
-        //    new originalConstructor(args);
-        //}
-        //   newConstructor.prototype = originalConstructor.prototype;
-        let columns: string[] = Reflect.getMetadata("oclConstraint", originalConstructor.prototype) || [];
-        columns.push(`context ${originalConstructor.name} ${oclExpression}`);
+        let columns: ValidationMetadataArgs[] = Reflect.getMetadata("oclConstraint", originalConstructor.prototype) || [];        
+        const args: ValidationMetadataArgs = {
+            type: "oclInvariant",
+            target: originalConstructor.constructor,
+            propertyName: "whatsthis",
+            constraints: [`context ${originalConstructor.name} ${oclExpression}`],
+            validationOptions: validationOptions
+        };
+        columns.push(args);
         Reflect.defineMetadata("oclConstraint", columns, originalConstructor.prototype);
+        //Reflect.defineMetadata("oclContext", originalConstructor.name, originalConstructor.prototype);
         return originalConstructor;
     };
 }
@@ -41,10 +51,9 @@ export function ContextForPostcondition(oclExpression: string) {
     };
 }
 /**
- * Indicates that the decorate property should be validated according
- * to it's class' ocl constraints.
+ * Indicates that the decorated property should be validated according
+ * to its class' OCL constraints.
  */
 export function ValidateNested() {
-    console.log("adding");
     return Reflect.metadata("validateNested", true);
 }

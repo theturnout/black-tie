@@ -1,7 +1,7 @@
+global.window = undefined; // Needed to avoid exception at import..
 import { Validator } from "../src/validate";
 import { expect } from "chai";
 import { ContextFor, ValidateNested } from "../src/oclDecorator";
-
 // -------------------------------------------------------------------------
 // Setup
 // -------------------------------------------------------------------------
@@ -81,6 +81,7 @@ describe("exclusive or", async function () {
         stevieNicks.hair.color = "green";
 
         const errors = await validator.validate(stevieNicks);
+        console.log(`my out: ${JSON.stringify(errors)}`);
         expect(errors.length).to.equal(1);
 
     });

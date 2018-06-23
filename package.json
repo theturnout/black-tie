@@ -13,7 +13,7 @@
   "author": "The Turnout LLC <john@turnout.rocks>",
   "license": "MIT",
   "dependencies": {
-    "@stekoe/ocl.js": "git+https://github.com/theturnout/ocl.js.git",
+    "@stekoe/ocl.js": "git+https://github.com/SteKoe/ocl.js.git#development",
     "class-validator": "^0.8.5",
     "reflect-metadata": "^0.1.12",
     "upgrade": "^1.1.0"
